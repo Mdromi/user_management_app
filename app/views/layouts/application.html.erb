@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UserManagementApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <style>
+      /* Optional custom styles can go here */
+    </style>
+  </head>
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="max-w-screen-xl w-full">
+      <%= yield %>
+    </div>
+    <!-- Flash messages -->
+    <% flash.each do |type, message| %>
+      <div data-controller="flash-message" id="flash-message" class="fixed top-4 right-4 z-50 px-4 py-2 rounded-md shadow-md
+                  <% if type == 'notice' %>
+                    bg-teal-200 text-teal-800
+                  <% elsif type == 'alert' %>
+                    bg-red-200 text-red-800
+                  <% end %> opacity-0 animate-fadeIn duration-300"  data-target="flash-message.flashMessage">
+        <%= message %>
+      </div>
+    <% end %>
+  </body>
+</html>

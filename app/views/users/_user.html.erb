@@ -1,0 +1,25 @@
+<% @users.each do |user| %>
+  <tr class="hover:bg-gray-100">
+    <td class="px-6 py-4">
+      <%= check_box_tag 'selected_users[]', user.id, false, 
+                  id: "user_#{user.id}", 
+                  data: { target: "select-all.checkbox" } %>
+    </td>
+    <td class="px-6 py-4 text-sm text-gray-500"><%= user.id %></td>
+    <td class="px-6 py-4 text-sm text-gray-500"><%= user.name %></td>
+    <td class="px-6 py-4 text-sm text-gray-500"><%= user.email %></td>
+    <td class="px-6 py-4 text-sm text-gray-500"><%= user.last_login_time.strftime("%B %d, %Y %H:%M:%S") %></td>
+    <td class="px-6 py-4 text-sm text-gray-500"><%= user.created_at.strftime("%B %d, %Y %H:%M:%S") %></td>
+    <td class="px-6 py-4 text-sm
+                <% if user.status == 'active' %>
+                  text-green-600
+                <% elsif user.status == 'blocked' %>
+                  text-red-600
+                <% else %>
+                  text-gray-500
+                <% end %>"
+              >
+      <%= user.status %>
+    </td>
+  </tr>
+<% end %>
